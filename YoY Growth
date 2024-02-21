@@ -1,0 +1,19 @@
+YoY Growth = 
+VAR _currentyearpension = 'SS&C Investments & pensions_M'[Pension transfer out (£)]
+VAR _currentyear =
+MAX ( 'Date'[Year] )
+VAR _previousyearpension =
+CALCULATE ( 'SS&C Investments & pensions_M'[Pension transfer out (£)], 'Date'[Year] = _currentyear - 1 )
+VAR _YoYGrowth =
+DIVIDE (
+_currentyearpension - _previousyearpension,
+_previousyearpension
+)
+RETURN
+IF (
+HASONEVALUE ( 'Date'[Year] ),
+IF (
+NOT ISBLANK ( _currentyearpension ) && NOT ISBLANK ( _previousyearpension ),
+_YoYGrowth
+)
+)
