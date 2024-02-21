@@ -1,0 +1,14 @@
+CTD CPA = 
+VAR SelectedDate =
+    MAX ( 'Date'[Date] )
+VAR StartDate =
+    DATE ( 2023, 4, 24 )
+VAR EndDate = SelectedDate
+RETURN
+    CALCULATE (
+        DIVIDE (
+            SUM ( 'mFuse main'[Sum of CTC Incl. VAT] ),
+            SUM ( 'CDW'[NewIsaGiaTotalSales] )
+        ),
+        DATESBETWEEN ( 'Date'[Date], StartDate, EndDate )
+    )
