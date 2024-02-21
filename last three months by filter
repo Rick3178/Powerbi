@@ -1,0 +1,14 @@
+Starts to complete Last 3 Months = 
+VAR SelectedDate =
+    MAX ( 'Date'[Date] )
+VAR EndDate =
+    EOMONTH ( SelectedDate, - 1 )
+VAR StartDate =
+    EOMONTH ( SelectedDate, - 4 ) + 1
+RETURN
+    CALCULATE (
+        DIVIDE ( [Completes], [Starts] ),
+        'Date'[Date] >= StartDate,
+        'Date'[Date] <= EndDate,
+        ALL ( 'Date'[Month], 'Date'[Year] )
+    )
