@@ -1,0 +1,11 @@
+Starts to complete YTD = 
+VAR SelectedDate =
+    MAX ( 'Date'[Date] )
+VAR StartDate =
+    DATE ( YEAR ( SelectedDate ), 1, 1 )
+VAR EndDate = SelectedDate
+RETURN
+    CALCULATE (
+        DIVIDE ( [Completes], [Starts] ),
+        DATESBETWEEN ( 'Date'[Date], StartDate, EndDate )
+    )
