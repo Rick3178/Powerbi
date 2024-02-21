@@ -1,0 +1,13 @@
+WoW CPA = 
+VAR SelectedDate =
+    MAX ( 'Date'[Date] )
+VAR StartDate = SelectedDate - 6 // Adjust to start from 6 days before the selected date
+VAR EndDate = SelectedDate
+RETURN
+    CALCULATE (
+        DIVIDE (
+            SUM ( 'mFuse main'[Sum of CTC Incl. VAT] ),
+            SUM ( 'CDW'[NewIsaGiaTotalSales] )
+        ),
+        DATESBETWEEN ( 'Date'[Date], StartDate, EndDate )
+    )
